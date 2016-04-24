@@ -1,8 +1,6 @@
 # EasyMailchimp
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/EasyMailchimp`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Easy Mailchimp Ruby library.
 
 ## Installation
 
@@ -22,7 +20,22 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+This gem is so simple its API is currently limited to,
+
+* `EasyMailchimp#create_member` &mdash; takes the list ID as a string, followed
+  by a Hash (see below for list of expected keys).
+* `EasyMailchimp#get_list_name` &mdash; takes the list ID as a string.
+
+```ruby
+require 'easy_mailchimp'
+
+mailchimp = ::EasyMailchimp::Base.new
+mailchimp.create_member('<Your Mailchimp List ID goes here>', {
+  email: 'tim.cook@apple.com',
+  first_name: 'Tim',
+  last_name: 'Cook'
+})
+```
 
 ## Development
 
@@ -32,7 +45,13 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/EasyMailchimp.
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/bsodmike/easy_mailchimp.
 
 
 ## License
