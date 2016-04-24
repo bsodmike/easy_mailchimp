@@ -1,5 +1,7 @@
 # EasyMailchimp
 
+[![Build Status](https://travis-ci.org/bsodmike/easy_mailchimp.svg?branch=master)](https://travis-ci.org/bsodmike/easy_mailchimp)
+
 Easy Mailchimp Ruby library.
 
 ## Installation
