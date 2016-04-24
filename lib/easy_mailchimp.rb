@@ -1,3 +1,4 @@
+require "gibbon"
 require "easy_mailchimp/version"
 require "easy_mailchimp/configuration"
 
