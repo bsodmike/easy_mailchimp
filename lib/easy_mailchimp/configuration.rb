@@ -11,10 +11,12 @@ module EasyMailchimp
 
     config_accessor :api_endpoint,
       :api_version,
-      :api_key
+      :api_key,
+      :logger
 
     self.api_version = "3.0"
     self.api_endpoint = "https://{{dc}}.api.mailchimp.com"
+    self.logger = ::Logger.new(STDOUT)
   end
 end
 

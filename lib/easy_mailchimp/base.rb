@@ -2,12 +2,16 @@ module EasyMailchimp
   class Base
     def initialize
       @config = ::EasyMailchimp.config
+      @logger = ::EasyMailchimp::Logger.new(@config.logger)
+
       @gibbon = ::Gibbon::Request.new({
         api_key: @config.api_key,
         api_endpoint: endpoint,
         timeout: 60
       })
     end
+
+    attr_reader :logger
 
     def create_member(list_id, info = {})
       email = info[:email] || ''
@@ -24,7 +28,7 @@ module EasyMailchimp
           }
         })
       rescue ::Gibbon::MailChimpError => ex
-        Rails.logger.tagged('Mailchimp::Base#create_member') { Rails.logger.debug "ERROR: #{ex.message} - #{ex.raw_body}" }
+        logger.info("ERROR: #{ex.message} - #{ex.raw_body}", 'Mailchimp::Base#create_member')
         raise
       end
     end
@@ -37,7 +41,7 @@ module EasyMailchimp
 
       list_map.select { |k,v| k == list_id }.values.first
     rescue => ex
-      Rails.logger.tagged('Mailchimp::Base#get_list_name') { Rails.logger.debug "ERROR: #{ex.message}" }
+      logger.info("ERROR: #{ex.message}", 'Mailchimp::Base#get_list_name')
       raise
     end
 
