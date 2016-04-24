@@ -15,8 +15,7 @@ module EasyMailchimp
 
     def create_member(list_id, info = {})
       email = info[:email] || ''
-      first_name = info[:first_name] || ''
-      last_name = info[:last_name] || ''
+      merge_fields = info[:merge_fields] || {}
 
       begin
         @gibbon.lists(list_id).members.create({
@@ -24,7 +23,7 @@ module EasyMailchimp
           {
             email_address: email,
             status: 'subscribed',
-            merge_fields: {FNAME: first_name, LNAME: last_name}
+            merge_fields: merge_fields
           }
         })
       rescue ::Gibbon::MailChimpError => ex

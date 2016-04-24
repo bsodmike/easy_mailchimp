@@ -34,8 +34,11 @@ require 'easy_mailchimp'
 mailchimp = ::EasyMailchimp::Base.new
 mailchimp.create_member('<Your Mailchimp List ID goes here>', {
   email: 'tim.cook@apple.com',
-  first_name: 'Tim',
-  last_name: 'Cook'
+  merge_fields: {
+    FNAME: 'Tim',
+    LNAME: 'Cook',
+    USERTYPE: 'CEO'
+  }
 })
 ```
 
