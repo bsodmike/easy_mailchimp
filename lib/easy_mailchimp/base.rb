@@ -2,7 +2,7 @@ module EasyMailchimp
   class Base
     def initialize
       @config = ::EasyMailchimp.config
-      @gibbon = Gibbon::Request.new({
+      @gibbon = ::Gibbon::Request.new({
         api_key: @config.api_key,
         api_endpoint: endpoint,
         timeout: 60
@@ -23,7 +23,7 @@ module EasyMailchimp
             merge_fields: {FNAME: first_name, LNAME: last_name}
           }
         })
-      rescue Gibbon::MailChimpError => ex
+      rescue ::Gibbon::MailChimpError => ex
         Rails.logger.tagged('Mailchimp::Base#create_member') { Rails.logger.debug "ERROR: #{ex.message} - #{ex.raw_body}" }
         raise
       end
